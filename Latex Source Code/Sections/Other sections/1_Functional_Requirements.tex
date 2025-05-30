@@ -1,0 +1,42 @@
+\newpage
+\customchapter{Functional Requirements}
+\begin{longtable}{|p{3.5cm}|p{1cm}|p{2.5cm}|p{2cm}|p{6.5cm}|}
+ \hline
+ \textbf{Requirement} & \textbf{ID} & \textbf{Importance} & \textbf{Verifiable} & \textbf{Description} \\
+ \hline
+ \hline
+Program Counter (PC) & G01 & High & System Verilog-TB &The PC holds the address of the next instruction to be executed. It increments by 4 bytes each clock cycle, corresponding to the size of each instruction.
+\\
+ \hline
+  Instruction Memory & G02 & High & System Verilog-TB & Stores the program's instructions and supplies them to the processor. It retrieves instructions based on the address provided by the PC.
+\\
+\hline
+Instruction Decoder & G03 & High & System Verilog-TB & Interprets the binary instruction fetched from the instruction memory. It generates control signals to guide the processor components.
+\\
+    
+ \hline
+ Register File & G05 & High & System Verilog-TB & Consists of 32 general-purpose registers for storing intermediate data and results. It supports two read ports and one write port.
+\\
+\hline
+ Arithmetic Logic Unit (ALU) & G06 & High & System Verilog-TB & Performs arithmetic and logical operations. Receives operands from the register file or immediate values and executes operations specified by control signals.
+\\
+\hline
+ Data Memory & G07 & High & System Verilog-TB & Used for reading from and writing to memory locations during load and store instructions. It interacts with memory beyond the register file. 
+  \\
+ \hline
+ Control Unit & G08 & High & System Verilog-TB & Generates control signals based on the decoded instruction. Directs operations of the ALU, data memory, and register file.\\
+ \hline
+  Instruction Execution Flow & G08 & High & System Verilog-TB & Each instruction starts by using the PC to fetch the instruction. Operands are read from the registers. The ALU is used for address calculation, operation execution, or equality check. Results are written back to the register file or used for further processing.\\
+ \hline
+  Memory-Reference Instructions & G08 & High & System Verilog-TB & Includes load doubleword (ld) and store doubleword (sd). Uses the ALU for address calculation and accesses memory for data operations.\\
+ \hline
+  Arithmetic-Logical Instructions & G08 & High & System Verilog-TB & Includes add, sub, and, and or. Uses the ALU for executing operations and writes results back to registers.\\
+ \hline
+  Conditional Branch Instructions & G08 & High & System Verilog-TB & Includes branch if equal (beq). Uses the ALU for equality tests and may alter the next instruction address based on the comparison.\\
+ \hline
+  Multiplexors & G08 & High & System Verilog-TB & Regulate the flow of data to various components based on the instruction class. Controlled by control signals decoded from the instruction.\\
+ \hline
+
+ RISC-V RV64I Compliance & G08 & High & Application Program & The processor must support all RV64I instructions (e.g., ADD, LOAD, STORE, BEQ) and execute them correctly as per the RISC-V specifications.\\
+ \hline
+\end{longtable}

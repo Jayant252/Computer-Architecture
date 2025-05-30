@@ -1,0 +1,67 @@
+\newpage
+\customchapter{Document Overview}
+\section{Glossary}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|p{3cm}|X|}
+        \hline
+        \textbf{Term} & \textbf{Description} \\
+        \hline\hline
+        ALU (Arithmetic Logic Unit) & A digital circuit used to perform arithmetic and logical operations. In the RISC-V implementation, the ALU performs operations such as addition, subtraction, AND, and OR based on the control signals provided. \\
+        \hline
+        ALU Control & The unit that generates the control signals for the ALU based on the ALUOp field and the function codes (funct7 and funct3) of the instruction. It determines which operation the ALU will perform. \\
+        \hline
+        ALUOp & A 2-bit control signal that indicates the type of operation to be performed by the ALU. The values of ALUOp determine whether the operation is an addition, subtraction, or a function determined by the funct7 and funct3 fields for R-type instructions. \\
+        \hline
+        Branch & A control signal indicating whether the current instruction is a branch instruction. If the condition for the branch is met, the program counter (PC) is updated to the target address. \\
+        \hline
+        Control Unit & The component that generates control signals based on the opcode of the instruction. It orchestrates the flow of data within the CPU, enabling the execution of instructions by controlling the operation of other components such as the ALU, registers, and memory. \\
+        \hline
+        Data Memory & A memory unit used to store data during program execution. The data memory is accessed using addresses computed by the ALU, and it supports read and write operations. \\
+        \hline
+        Immediate Generator (ImmGen) & A unit that generates immediate values from the instruction fields. Immediate values are often used for arithmetic operations or as addresses for load and store instructions. \\
+        \hline
+        Instruction Memory & A memory unit that stores the program instructions. The instruction memory is accessed sequentially using the program counter (PC), which holds the address of the current instruction. \\
+        \hline
+        MUX (Multiplexer) & A digital switch that selects one of several input signals and forwards the selected input to the output. In the RISC-V implementation, MUXes are used to select between different data sources based on control signals. \\
+        \hline
+        Program Counter (PC) & A register that holds the address of the next instruction to be executed. The PC is updated after each instruction fetch to point to the next instruction in memory. \\
+      
+        \hline
+    \end{tabularx}
+\end{table}
+
+\newpage
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|p{3cm}|X|}
+        \hline
+        \textbf{Term} & \textbf{Description} \\
+        \hline\hline
+        Register File & A set of registers used to store operands and intermediate results. The register file has read and write ports to access and update the registers during instruction execution. \\
+        \hline
+        Zero Flag & A flag set by the ALU to indicate whether the result of an operation is zero. This flag is often used for branch instructions to determine if a condition is met (e.g., branch if equal). \\
+        \hline
+        Funct3 and Funct7 & Fields within the R-type instruction format that specify the specific operation to be performed by the ALU. Funct3 is a 3-bit field, and funct7 is a 7-bit field. \\
+        \hline
+        MemRead & A control signal that enables reading data from memory. \\
+        \hline
+        MemWrite & A control signal that enables writing data to memory. \\
+        \hline
+        MemtoReg & A control signal that determines whether the data to be written to a register comes from memory or the ALU result. \\
+        \hline
+        RegWrite & A control signal that enables writing data to a register in the register file. \\
+        \hline
+        ALUSrc & A control signal that determines whether the second operand for the ALU comes from a register or an immediate value. \\
+        \hline
+        Add & An arithmetic operation where two values are summed. In the context of the PC, adding 4 to the current PC value points to the next instruction. \\
+        \hline
+        Shift Left 1 & An operation that shifts a binary value left by one position, effectively multiplying it by 2. This operation is often used in calculating branch target addresses. \\
+        \hline
+    \end{tabularx}
+    \caption{Glossary of Terms for RISC-V Implementation}
+    \label{tab:glossary}
+\end{table}
+
+

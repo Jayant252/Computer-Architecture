@@ -1,0 +1,40 @@
+\newpage
+\vspace*{-2cm} % Adjust the value as needed
+\customchapter{Architecture Concepts}
+
+\section{RISC-V ISA}
+The RISC-V ISA (Instruction Set Architecture) is a modern, open standard developed to support a wide range of computing devices. The RV64I is a specific implementation of the RISC-V ISA, focusing on a 64-bit integer base instruction set. The RV64I ISA is a simple yet powerful 64-bit instruction set designed with a reduced instruction set computing (RISC) philosophy. It includes a basic set of instructions for integer computation, memory operations, and control flow, which form the foundation for more complex instructions and extensions.\\
+\vspace{\baselineskip}
+RV64I defines 32 general-purpose registers (x0 to x31), each 64 bits wide. Register x0 is hardwired to zero, providing a convenient way to zero out registers or perform no-ops in certain instructions. The other registers (x1 to x31) are used for standard data manipulation and addressing.
+
+\subsection{Instruction Formats}
+RV64I uses a fixed 32-bit instruction format with several encoding types to support various instruction needs:
+\begin{table}[h]
+\centering
+\begin{tabular}{|>{\centering\arraybackslash}m{2cm}|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{1cm}|>{\centering\arraybackslash}m{1cm}|>{\centering\arraybackslash}m{1.3cm}|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{1.5cm}|>{\centering\arraybackslash}m{3cm}|}
+\hline
+\textbf{Name} \newline \textbf{(Field size)} & \textbf{7 bits} & \textbf{5 bits} & \textbf{5 bits} & \textbf{3 bits} & \textbf{5 bits} & \textbf{7 bits} & \textbf{Comments} \\
+\hline
+R-type & funct7 & rs2 & rs1 & funct3 & rd & opcode & Arithmetic instruction format \\
+\hline
+I-type & \multicolumn{2}{c|}{immediate[11:0]} & rs1 & funct3 & rd & opcode & Loads \& immediate arithmetic \\
+\hline
+S-type & immed[11:5] & rs2 & rs1 & funct3 & immed[4:0] & opcode & Stores \\
+\hline
+SB-type & immed[12,10:5] & rs2 & rs1 & funct3 & immed[4:1,11] & opcode & Conditional branch format \\
+\hline
+U-type & \multicolumn{4}{c|}{immediate[20,10:1,11,19:12]} & rd & opcode & Unconditional jump format \\
+\hline
+UJ-type & \multicolumn{4}{c|}{immediate[31:12]} & rd & opcode & Upper immediate format \\
+\hline
+\end{tabular}
+\caption{RISC-V Instruction Formats}
+\end{table}
+\begin{itemize}
+\item \textbf{R-Type (Register-Register):} Used for arithmetic and logical operations between registers.
+\item \textbf{I-Type (Immediate):} Used for arithmetic operations with an immediate value, loads, and certain control instructions.
+\item \textbf{S-Type (Store):} Used for storing data from a register to memory.
+\item \textbf{SB-Type (Branch):} Used for conditional branching based on comparisons between register values.
+\item \textbf{U-Type (Upper Immediate):} Used for instructions that operate with a 20-bit upper immediate.
+\end{itemize}
+In our design, we will only be implementing datapaths and logic elements for R-Type, I-Type, S-Type and SB-Type instruction classes.
